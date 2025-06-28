@@ -16,11 +16,13 @@ public class BookManagerPanel extends JPanel {
 
     private JTextField idField, titleField, authorField, isbnField, searchField;
     private JTextArea resultArea;
+    private JLabel statusLabel;
 
     public BookManagerPanel() {
         setLayout(new BorderLayout());
 
-        JPanel inputPanel = new JPanel(new GridLayout(5, 2));
+        JPanel inputPanel = new JPanel(new GridLayout(5, 2, 5, 5));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         inputPanel.add(new JLabel("ID:"));
         idField = new JTextField();
@@ -54,17 +56,15 @@ public class BookManagerPanel extends JPanel {
 
         resultArea = new JTextArea();
         resultArea.setEditable(false);
-        add(new JScrollPane(resultArea), BorderLayout.SOUTH);
+        add(new JScrollPane(resultArea), BorderLayout.EAST);
+
+        statusLabel = new JLabel(" ");
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(statusLabel, BorderLayout.SOUTH);
     }
 
     private void handleAddBook(ActionEvent e) {
-        Book book = new Book(
-                idField.getText(),
-                titleField.getText(),
-                authorField.getText(),
-                isbnField.getText(),
-                true
-        );
+        Book book = new Book(idField.getText(), titleField.getText(), authorField.getText(), isbnField.getText(), true);
         bookService.addBook(book);
         showMessage("Book added!");
         clearFields();
@@ -82,10 +82,11 @@ public class BookManagerPanel extends JPanel {
         for (Book book : books) {
             resultArea.append(book.getId() + " - " + book.getTitle() + "\n");
         }
+        showMessage(books.isEmpty() ? "No books found." : "Search complete.");
     }
 
     private void showMessage(String msg) {
-        JOptionPane.showMessageDialog(this, msg);
+        statusLabel.setText(msg);
     }
 
     private void clearFields() {
@@ -93,5 +94,6 @@ public class BookManagerPanel extends JPanel {
         titleField.setText("");
         authorField.setText("");
         isbnField.setText("");
+        searchField.setText("");
     }
 }

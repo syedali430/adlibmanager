@@ -11,17 +11,19 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class MemberManagerPanel extends JPanel {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private MemberService memberService = new MemberServiceImpl();
 
     private JTextField idField, nameField, emailField, searchField;
     private JTextArea resultArea;
+    private JLabel statusLabel;
 
     public MemberManagerPanel() {
         setLayout(new BorderLayout());
 
-        JPanel inputPanel = new JPanel(new GridLayout(4, 2));
+        JPanel inputPanel = new JPanel(new GridLayout(4, 2, 5, 5));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         inputPanel.add(new JLabel("ID:"));
         idField = new JTextField();
@@ -51,16 +53,15 @@ public class MemberManagerPanel extends JPanel {
 
         resultArea = new JTextArea();
         resultArea.setEditable(false);
-        add(new JScrollPane(resultArea), BorderLayout.SOUTH);
+        add(new JScrollPane(resultArea), BorderLayout.EAST);
+
+        statusLabel = new JLabel(" ");
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(statusLabel, BorderLayout.SOUTH);
     }
 
     private void handleAddMember(ActionEvent e) {
-        Member member = new Member(
-                idField.getText(),
-                nameField.getText(),
-                emailField.getText(),
-                LocalDate.now()
-        );
+        Member member = new Member(idField.getText(), nameField.getText(), emailField.getText(), LocalDate.now());
         memberService.addMember(member);
         showMessage("Member added!");
         clearFields();
@@ -78,15 +79,17 @@ public class MemberManagerPanel extends JPanel {
         for (Member member : members) {
             resultArea.append(member.getId() + " - " + member.getName() + "\n");
         }
+        showMessage(members.isEmpty() ? "No members found." : "Search complete.");
     }
 
     private void showMessage(String msg) {
-        JOptionPane.showMessageDialog(this, msg);
+        statusLabel.setText(msg);
     }
 
     private void clearFields() {
         idField.setText("");
         nameField.setText("");
         emailField.setText("");
+        searchField.setText("");
     }
 }
