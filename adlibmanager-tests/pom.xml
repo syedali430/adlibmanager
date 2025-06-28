@@ -25,6 +25,13 @@
       <artifactId>adlibmanager-core</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    
+    <dependency>
+    <groupId>com.adlibmanager</groupId>
+    <artifactId>adlibmanager-db</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+    
   </dependencies>
 
 </project>

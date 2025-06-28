@@ -1,18 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>com.adlibmanager</groupId>
     <artifactId>adlibmanager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+
   <artifactId>adlibmanager-ui</artifactId>
-  
-<dependencies>
+
+  <dependencies>
+    <!-- Core module: contains domain and service logic -->
     <dependency>
       <groupId>com.adlibmanager</groupId>
       <artifactId>adlibmanager-core</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+
+    <!-- Optional: DB module if you later use JDBC directly in UI -->
+    <dependency>
+      <groupId>com.adlibmanager</groupId>
+      <artifactId>adlibmanager-db</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <!-- Required for Swing apps (optional in most JDKs) -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>19</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
-  
+
 </project>

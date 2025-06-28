@@ -2,7 +2,7 @@ package com.adlibmanager.ui;
 
 import com.adlibmanager.core.domain.Member;
 import com.adlibmanager.core.service.MemberService;
-import com.adlibmanager.core.service.MemberServiceImpl;
+import com.adlibmanager.db.service.MemberServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;

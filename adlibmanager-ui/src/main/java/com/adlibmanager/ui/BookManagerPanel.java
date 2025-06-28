@@ -2,7 +2,7 @@ package com.adlibmanager.ui;
 
 import com.adlibmanager.core.domain.Book;
 import com.adlibmanager.core.service.BookService;
-import com.adlibmanager.core.service.BookServiceImpl;
+import com.adlibmanager.db.service.BookServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,7 @@
 package com.adlibmanager.core.service;
 
 import com.adlibmanager.core.domain.Book;
+import com.adlibmanager.db.service.BookServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +15,8 @@ public class BookServiceTest {
 
     @Before
     public void setUp() {
-        bookService = new BookServiceImpl(); // direct implementation for now
+        // ✅ Import implementation from db module
+        bookService = new BookServiceImpl();
     }
 
     @Test

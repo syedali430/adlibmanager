@@ -1,6 +1,7 @@
 package com.adlibmanager.core.service;
 
 import com.adlibmanager.core.domain.Member;
+import com.adlibmanager.db.service.MemberServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
